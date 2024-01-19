@@ -15,16 +15,16 @@ jobs:
     - name: Docker Login
       uses: docker/login-action@v3.0.0
       with:
-        registry: ttchatbaard.azurecr.io
-        username: ttchatbaard
-        password: LrsMQekaLkBxb0HpxrvVLtn+cSKQrOid00bd0us3Vw+ACRBXQecI
+        registry: fruoccopublic.azurecr.io
+        username: fruoccopublic
+        password: ${{ secrets.DOCKER_PASSWORD }}
     
     - uses: actions/checkout@v4
     - name: Build the Docker image
       run:
-        docker pull ttchatbaard.azurecr.io/cwyod_backend:latest || true;
-        docker build . --file extensions/docker/Backend.Dockerfile --cache-from ttchatbaard.azurecr.io/cwyod_backend:latest --tag ttchatbaard.azurecr.io/cwyod_backend:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker tag ttchatbaard.azurecr.io/cwyod_backend:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER ttchatbaard.azurecr.io/cwyod_backend:latest;
-        docker push ttchatbaard.azurecr.io/cwyod_backend:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
-        docker push ttchatbaard.azurecr.io/cwyod_backend:latest;
+        docker pull fruoccopublic.azurecr.io/cwyod_backend:latest || true;
+        docker build . --file extensions/docker/Backend.Dockerfile --cache-from fruoccopublic.azurecr.io/cwyod_backend:latest --tag fruoccopublic.azurecr.io/cwyod_backend:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
+        docker tag fruoccopublic.azurecr.io/cwyod_backend:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER fruoccopublic.azurecr.io/cwyod_backend:latest;
+        docker push fruoccopublic.azurecr.io/cwyod_backend:$(date +'%Y-%m-%d')_$GITHUB_RUN_NUMBER;
+        docker push fruoccopublic.azurecr.io/cwyod_backend:latest;
         
